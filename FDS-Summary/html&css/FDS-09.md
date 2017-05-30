@@ -1,34 +1,6 @@
 FDS-09-메인컨텐츠3
 ========
 
-
-
-## <<참고링크>>
-- CssZengarden: 같은 마크업 다양한 css활용
-<http://www.csszengarden.com/>
-- ARIA UI <https://github.com/niawa/ARIA>
----
----
-## <<새로 배운 속성>>
-### min-height
-
-최소 높이 (지정한 높이값보다 줄어들더라도 높이값이 유지된다.)
-
-**Syntax**
-~~~
-min-height : length | % | inherit;
-~~~
-
-**예시**
-```css
-.board{
-    min-height: 170px;
-}
-```
-
-
----
----
 ## <<webcafe 실습>>
 
 ### 컬럼2 - 탭메뉴(유동적인 방법) / 새소식

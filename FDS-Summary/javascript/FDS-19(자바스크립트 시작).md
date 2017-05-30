@@ -5,13 +5,13 @@ FDS-19-자바스크립트 시작
 ### <<레벨 테스트>>
 
 - javascript 데이터 유형
-    - `Number` : 
-    - `null` : 
-    - `ndefined` : 
-    - `Array` : 
+    - `Number`
+    - `null`
+    - `ndefined`
+    - `Array`
 - 할당 연산자 `=`
     - `>`
-    - `!` : 부정
+    - `!`
     - `<<`
 - `Block Scope`
     - `inline` - 자기가 포함한 텍스트까지만 vertical-align 할 수 있다.
@@ -38,7 +38,7 @@ console.log('book_name:', book_name);
     - var 
     - undifined 는 기본적으로 부정
     - !를 만나면 긍정이 된다.
-    - 그런데! 전역변수로 redBook을 불렀잖아, 위에 내용은 지역변수라서 
+    - 그런데! 전역변수로 readBook을 불렀잖아, 위에 내용은 지역변수라서 
 
 - 예제2 this가 참조하는 결과 : ??
 ```js
