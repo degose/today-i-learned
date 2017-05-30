@@ -15,10 +15,10 @@ FDS-19-자바스크립트 시작
     - `<<`
 - `Block Scope`
     - `inline` - 자기가 포함한 텍스트까지만 vertical-align 할 수 있다.
-    - `block` - 
-    - `inline-block` - 
-- 보간법(interpolation) : `#{}`
-- 에크마 스크립트
+    - `block`
+    - `inline-block`
+- 보간법(interpolation) : `#{}` / 변수를 "" 내부에서 처리
+- 에크마 스크립트 :  JavaScript의 표준화 버전
 - 모던 스크립트
 - 예제1 콘솔에 출력되는 값 : true
 ```js
