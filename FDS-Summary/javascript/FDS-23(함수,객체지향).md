@@ -10,12 +10,13 @@ FDS-23-함수, 객체지향
 - var로 정의하는 변수는 대소문자를 섞어 사용 가능하며, 첫글자가 숫자일 경우 오류이다.
 
 ## << 오류 유형 >>
-- TypeError
-- SyntaxError - 문법 오류
-- ReferenceError - 선언되지 않은 변수에 접근한 경우 '참조오류'
-- InternalError
-- RangeError
-- permission denied to access property - 권한 없음
+### [참고] (https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/TypeError)
+- `TypeError` : 함수나 연산자의 인자가, 그 함수나 연산자가 예상하던 타입과 호환되지 않을 때
+- `SyntaxError` - 문법 오류
+- `ReferenceError` - 선언되지 않은 변수에 접근한 경우 '참조오류'
+- `InternalError`- 자바스크립트 엔진 안에서 내부 에러가 발생했을 때 (예 : 너무 많은 재귀호출)
+- `RangeError` - 숫자 변수나 파라미터가 유효한 범위를 벗어났을 때
+- `permission denied to access property` - 권한 없음
 
 ### 값 복사
 - !!ele - 불리언값
@@ -25,11 +26,10 @@ FDS-23-함수, 객체지향
 - 숫자값
 
 ### 값 참조
+- 배열
+- 함수
 
 ### if VS switch
-
-### 반복 문에 사용할 수 없는 키워드
-- return 은 함수
 
 ### for VS for..in
 - length속성

@@ -108,6 +108,8 @@ $ npm run watch
 > node-sass --output-style expanded css/modules/grid.scss > css/modules/grid.css
 ```
 !!!! 이 명령어들은 꼭!! package.json파일이 보이는 폴더에서 실행해야 된단다..
+나올때는 contl + c
+
 
 # git에 올릴때 node_modules는 올리면 안된다.
 <https://www.gitignore.io/>
@@ -135,3 +137,8 @@ $ git push origin gh-pages
 
 ```
 주소창에 degose.github.io/webtest(저장소 이름 / 여러개 가능 경로만 잘 만들면)
+
+# 실수로 gh-pages로 작업했는데 master로 옮기고 싶을때
+당황하지 마르구.. gh-paghes로 작업된(수정된)파일을 다른데 복사해 두었다가 
+git checkout master로 바꾼뒤
+master 폴더에 복사해뒀던 파일들을 다시 넣어서 push 하면 된단다....
