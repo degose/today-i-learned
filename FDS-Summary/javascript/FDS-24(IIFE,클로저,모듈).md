@@ -53,7 +53,6 @@ var another_memorial_card = (function(){
 ```
 
 - 네임스페이스 패턴을 활용
-- `sayWhatTypeOfFunction` : 
 ```js
 (function(global, $){ // (매개변수)global - window / $ - FDS 를 가리킨다.
     var module = function () {
@@ -71,11 +70,11 @@ var another_memorial_card = (function(){
     }
     // fds 변수는 확실하게 객체이다.
     // 이렇게 공개할 수 있다.
-    // global.fds.sayWhatTypeOfFunction = module;
-    $.sayWhatTypeOfFunction = module; //???
+    // global.fds.sayWhatTypeOfFunction = module; // sayWhatTypeOfFunction이라는 메서드를 만들어줌
+    $.sayWhatTypeOfFunction = module; 
 
 // }(window));
-}(window, (window.fds = window.fds || {}))); // ???
+}(window, (window.fds = window.fds || {}))); // - 인자
 ``` 
 
 ## 클로저(Closures)
@@ -139,6 +138,8 @@ var countUp10 = countUpMaker();
 function makeCountManager(init_count) {
     // 관리할 카운트 값을 초기화
     init_count = init_count || 0;
+    
+    // 함수내부의 기억을 가지고 있는 객체(데이터)들을 외부로 유출
     return {
         // 카운트 증가 메서드
         increase: function(step){
@@ -180,7 +181,7 @@ function makeCountManager(init_count) {
 console.log('classUsingArray');
 
 // Model 함수를 정의
-var Model = function(g,$){ // 왜 매게변수로 global , $(FDS)를 받나?
+var Model = function(g,$){ // 왜 매게변수로 global , $(FDS)를 받나? -> window에 메서드를 가져다 쓸 때, 명시적으로 적어주지 않으면 안에서 쓰는 window를 찾기위해 바깥(전역)에 나갔다와야하는데 그 비용을 절감하기 위해서
   // FDS 모듈이 존재하지 않을 경우 -> 오류 발생
   if ( !FDS ) { throw 'Model.js는 FDS 모듈에 의존하는 개발 파일입니다.' }
 
@@ -217,7 +218,7 @@ var Model = function(g,$){ // 왜 매게변수로 global , $(FDS)를 받나?
     return _modelManager;
   }
 
-}(window, window.FDS); //  왜 인자 1로 window를해주고 인자 2로  FDS를 해주나? 
+}(window, window.FDS);
 
 
 
