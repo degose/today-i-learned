@@ -434,3 +434,7 @@ function assignFlower(student, flowerList) {
 ```js
 for(var i=0; i<; i++)
 ```
+
+
+#### 디버거 콘솔
+- Sources -> snippets추가 해서 -> 빈 문서에 코드 붙여넣고 -> 북마크 한 뒤 -> 로딩
