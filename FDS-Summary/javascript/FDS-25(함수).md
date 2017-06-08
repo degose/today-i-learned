@@ -1,14 +1,19 @@
-FDS-25-함순
+FDS-25-함수 연습
 ========
 
 ========
 ### codeshcool 
 ========
+- `alert` 인수는 오로지 하나의 숫자 리터럴이다.
+- 계산하지 않는다. 예를 들어, `*` 같은 건 이용하지 마라. (물론 머릿속으로 산수 정도는 해야함.)
+- 문자열로 전달하지 마라.
+- 숫자는 정수여야 한다. 소수점은 없다.
+1)
 ```js
-function mystery(){
+function mystery(){ 
     var secret = 6;
     function mystery2(multiplier){ //3
-        multiplier *= 3;//9
+        multiplier *= 3;// 9 (새로 정의 되었어)
         return secret * multiplier; // (스코프 체이닝) 6 * 9 = 54
     }
     return mystery2;
@@ -20,7 +25,7 @@ var result = hidden(3);
 console.log('내가 생각한 값 : ',);
 console.log('실제 결과 값: 54',result);
 ```
-
+2)
 ```js
 function mystery(input){ //4 
     var secret = 5;
@@ -28,13 +33,15 @@ function mystery(input){ //4
         multiplier *= input; // 2 * 4(스코프 체이닝)
         return secret * multiplier; // 5 * 8 = 40
     }
+    return mystery2;
 }
 
 var hidden = mystery(4);
+var result = hidden(2);
 
 // 40
 ```
-
+3)
 ```js
 function mystery(input) { // 3
   var secret = 4;
@@ -224,10 +231,11 @@ function warningMaker(obstacle) {
     count++;
     var list = "";
     // push an array with location and number
-    list.push([location,number]);// []묶어줘야
+    zones.push([location,number]);// []묶어줘야
     for (var i = 0; i < zones.length; i++) {
       // replace location and number with appropriate code
-      list += zone[i][1] + " (" + [i][0] + ")" + "\n";
+      list += zones[i][1] + " (" + zones[i][0] + ")" + "\n"; // 왜 이렇게 쓰지??
+      // zones이라는 배열안에 또 배열로 [location,number]를 줬기 때문에 앞에 inedex 1번째, index 0번째 이런것을 의미하는 것
     }
     alert("Beware! There have been " + obstacle +
           " sightings in the Cove today!\n" +
@@ -239,6 +247,11 @@ function warningMaker(obstacle) {
           list);
   };
 }
+var orkAlert = warningMaker('ork');
+orkAlert(2, '강남');
+orkAlert(3, '신사');
+orkAlert(10, '압구정');
+orkAlert(1, '패캠');
 ```
 
 =======
@@ -387,7 +400,16 @@ adventureSelector를 호출하고 3을 인수로 전달하는 코드를 작성�
 ======
 
 1)
-수강생이 강의장에 오면, flowerList 배열에서 인덱스에 해당하는 사람에게 아래와 같이 주려고 한다.
+수강생이 강의장에 오면, `flowerList` 배열에서 인덱스에 해당하는 사람에게 아래와 같이 주려고 한다. 모양은 아래와 같다.
+["장미", "목련꽃", "매화", "라넌큘러스", "국화", "할미꽃", "민들레", "양귀비"]
+
+그런데, `assignFlower` 함수에 문제가 있어, 제대로 실행되지 않는다.
+
+- `for`문 안에 있는 함수의 위치는 바꾸지 않는다.
+- `classroomAssignment` 변수에 할당하지 않고, 익명함수를 `return`한다.
+- `classroomAssignment`에서 필요 없는 코드는 지운다.
+
+- 참고: assignFlower 함수를 실행할 필요는 없음.
 
 - 원본
 ```js
@@ -408,17 +430,14 @@ function assignFlower(student, flowerList) {
 
 - 수정
 ```js
-function assignFlower(student, flowerList) {
-  var for (var i = 0; i < flowerList.length; i++) {
-    if (student == flowerList[i]) {
-      return function() {
-        alert("안녕하세요, " + student + "님!\n" +
-        "강의장에 오시면 " +
-        flowerList[i] + " 을/를 선물로 드릴게요.");
-      };
-    }
-  }
+function assignFlower(students, flowerList) {
+  return function() {
+    alert("안녕하세요, " + students[i] + "님!\n" +
+    "강의장에 오시면 " +
+    flowerList[i] + " 을/를 선물로 드릴게요.");
+  };
 }
+
 ```
 
 

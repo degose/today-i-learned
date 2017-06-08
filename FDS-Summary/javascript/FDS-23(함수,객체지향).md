@@ -76,7 +76,6 @@ var getKorAirProps = function(){
 var final_result = getKorAirProps();//['대한민국']
 ```
 
-Q. 참조할때 어떻게? 복사할때 어떻게?
 
 
 
