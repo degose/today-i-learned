@@ -453,6 +453,33 @@ function assignFlower(students, flowerList) {
 ```js
 for(var i=0; i<; i++)
 ```
+```js
+var star = function(num) {
+    var count = Math.floor(num / 2), countFlag = false, str = "";
+    for(var i = 1; i <= num; i++) {
+        str = "";
+        //빈공간 넣기
+        
+        for (var j = 0; j < count; j++) {
+            str += " ";
+        }
+
+        for (var z = 0; z < (num - count * 2); z++) {
+            str += "*";
+        }
+
+        if (count === 0) {
+            countFlag = true;
+        }
+        if(!countFlag) {
+            count--;
+        } else {
+            count++;
+        }
+        console.log(str);   
+    }
+}
+```
 
 
 #### 디버거 콘솔
