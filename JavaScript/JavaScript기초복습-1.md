@@ -46,6 +46,7 @@
 ## 반복문
 ### for
 - 괄호로 묶이고 세미콜론으로 구분된 선택사항 식 셋으로 구성된 루프를 만든다. 루프에서 실행되는 문이 뒤따른다.
+- 배열에 있는 배열 요소를 꺼낼 때, length이용
 ### do...while
 - 테스트 조건이 거짓으로 평가될 때까지 지정된 문을 실행하는 루프를 만든다. 조건은 문을 실행한 후 평가된다. 그 결과 지정된 문은 적어도 한 번 실행된다.
 ### for...in
@@ -92,6 +93,19 @@ var number = Number(input);
 (number > 0) ? alert('양수입니다.') : alert('음수입니다.');
 // 
 ```
+
+## 배열
+- 배열에 다른 배열이 포함될 경우
+```js
+var lennon = Array("존 레논", 1940, false);
+var beatles = Array();
+beatles[0] = lennon;
+beatles[0][0] // "존 레논"
+beatles[0][1] // 1940
+beatles[0][2] // false
+```
+
+
 
 
 property
