@@ -158,15 +158,15 @@ recall('use case design project');
 - Ajax 요청 <- 데이터() 
 - 우리는 HTML DOM을 사용할 것이지만, Core DOM을 사용하는 회사를 만날수도 있다.
 
-## `item(index)`메서드 
+## item(index)
 - 컬렉션의 현재 항목을 반환. Enumerator 개체(컬렉션에서 항목을 열거할 수 있도록 설정)
 - IE에서만 지원???(참고: <https://msdn.microsoft.com/ko-kr/library/e9ka710x(v=vs.94).aspx>)
 - 비어 있거나 현재 항목이 정의되지 않은 경우 undefined를 반환합니다.
 - 배열 메서드 5가지 참고 : <http://blog.kazikai.net/?p=16>
 
-## `getElementById(name)`
+## getElementById(name)
 - html 문서에서 지정된 아이디 속성을 포함하는 단 하나의 요소를 참조
-## `getElementsByTagName(name)`
+## getElementsByTagName(name)
 - 전체 문서에서 매개변수 값의 요소 엘리먼트를 찾을 수 있다.
 - id와 다르게 여러개의 같은 이름을 사용하는 태그를 얻게 된다.
 ```js
