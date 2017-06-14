@@ -2,9 +2,7 @@ FDS-28-이벤트핸들링,포토쇼케이스실습,정규표현식
 ========
 
 ## 부모노드 찾기(숫자를 가지고 몇 칸 올라갈 수 있나?)
-
-
-- 
+## location.hash
 - `/` 에서 `#`(hash)로 바꿔줌
 - `#`(hash) 는 콘솔창에서 `location.hash`로 접근 가능하고, 재설정도 가능하다.
 ```html
@@ -28,7 +26,6 @@ FDS-28-이벤트핸들링,포토쇼케이스실습,정규표현식
 ```
 
 ## node 정보
-
 - id
 - className
 - title
@@ -37,18 +34,10 @@ FDS-28-이벤트핸들링,포토쇼케이스실습,정규표현식
 - nodeValue (data)
 - hasChildNodes() => 메서드 true & false 값 반환 has 는 있다없다 조건문에서 많이 사용됨
 
-document.getElementByClassName('link-content')
+- document.getElementByClassName('link-content')
 
 
-<https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/RegExp>
 
-toggleClass
-activeClass
-RegExp 
-
-FDS.type(/[a-2]) // "regexp"
-
-// 
 getElementById
 getElementByTagName
 getElementByClassName
@@ -57,13 +46,12 @@ getElementByClassName
 querySelector() -> 하나만
 querySelectorAll() -> 모두
 
-querySelector()
+- querySelector()
 selector들이 지정한 그룹과 일치하는 document 내의 첫 번째 element를 반환
  (depth-first를 우선적으로 사용해 문서의 노드들을 탐색합니다. 자식 노드의 양에 따라 첫 element를 검색하는 것을 순차적으로 반복하여 탐색합니다. )
 querySelector(selector) // selecter를 사용하는 엘리먼트들 중에 첫번째를 반환 ".selector" 처럼 문자열로 된 css선택자를 넣아야한다.
 
-querySelectorAll()
-
+- querySelectorAll()
 
 ```js
 querySelector('ul li:last-child') // css 선택자와 비슷
@@ -74,68 +62,16 @@ querySelector('.link-content') // 앞에 .쓰는것 잊지말자. 선택자를 �
 querySelector('* > .link-content') // css에서는 * 를 생략해도 되지만 여기서는 명시해줘야함. (* > 는 직계자손을 찾는다.)
 ```
 
-<https://sizzlejs.com/>
-제이쿼리의 선택자 엔진의 뭐?
-
-
-
-## 정규표현식
-<https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/RegExp>
-
-```js
-/pattern/flags         //문자표기방식
-new RegExp(pattern[, flags])       //생성자로 만들때
-```
-pattern
-정규식(regular expression)을 나타내는 문자입니다..
-flags
-If specified, flags can have any combination of the following values:
-
-g
-global match; 일치하는 첫 번째 문자에서 멈추지 않고 전체에서 일치하는 모든 문자를 검색합니다.
-i
-ignore case(대소문자를 구별하지 않습니다.)
-m
-multiline; 시작 혹은 끝 문자 탐색(^ and $)이 다중행에 적용되도록 합니다.  (예로,  \n 혹은 \r로 개행된 각각의 라인 시작 혹은 끝 뿐만 아니라, 전체 입력 문자의 시작 혹은 끝에서 일치합니다.
-
-
-
-/link-content/.test('link-content external') // true
-
-css
-[href^=".pdf"]{} => 시작 start
-[href$=".pdf"]{} => 끝 end
-[href*=".pdf"]{} => 어디든 있는거
-// \s => white space character empty
-
-x|y  => x or y
-
-```js
-/(^|\s)link-content($|\s)/.test('link-content external') // true
-```
-
-link-content 의 앞에 공백이 오거나
-link-content 의 뒤에 공백이 오거나
-link-content 의 양쪽에 공백이 오거나
-
-var keyword = 'link-content';
-
-var match = new RegExp('/(^|\s) + match + ($|\s)/')
-
-
-
-
 - `document.getElementsByClassName`
 탐색 스크립트이다. 
 getElementByID의 경우 ID가 부여된 단 하나의 요소만을 탐색할 뿐이며 getElementsByTagName의 경우 동일 태그의 모든 요소를 반환한다. 만일 임의의 이름이 부여된 특정 그룹을 탐색하고자 할 경우 이 두가지만으로는 한번에 만족시킬 수 없다. getElementsByClassName 은 그 이름에서도 알 수 있듯이 className 이 부여된 요소(그룹)을 반환한다.
 
-페이지에 다음과 같이 동일한 class가 부여된 div 요소가 정의되어 있다면,
+- 페이지에 다음과 같이 동일한 class가 부여된 div 요소가 정의되어 있다면,
 ```html
 <div class="myDivClass">First Div</div>
 <div class="myDivClass">Second Div</div>
 ```
-
-다음과 같이 class 명으로 div 요소 그룹을 탐색할 수 있다
+- 다음과 같이 class 명으로 div 요소 그룹을 탐색할 수 있다
 ```js
 var element1 = document.getElementsByClassName("myDivClass");    
     
@@ -145,9 +81,37 @@ for(var i = 0; i < element1.length; i++){
 ```
 
 
+## 정규표현식
+- 참고 : <https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/RegExp>
+```js
+/pattern/flags         //문자표기방식
+new RegExp(pattern[, flags])       //생성자로 만들때
+```
+- `pattern` : 정규식(regular expression)을 나타내는 문자
+- `flags`
+  - g : global match; 일치하는 첫 번째 문자에서 멈추지 않고 전체에서 일치하는 모든 문자를 검색합니다.
+  - i : ignore case(대소문자를 구별하지 않습니다.)
+  - m : multiline; 시작 혹은 끝 문자 탐색(^ and $)이 다중행에 적용되도록 합니다.  (예로,  \n 혹은 \r로 개행된 각각의 라인 시작 혹은 끝 뿐만 아니라, 전체 입력 문자의 시작 혹은 끝에서 일치합니다.
+```js
+[href^=".pdf"]{} // => 시작 start
+[href$=".pdf"]{} // => 끝 end
+[href*=".pdf"]{} // => 어디든 있는거
+\s // => white space character empty
+
+x|y // => x or y
+```
+- 예시
+  - link-content 의 앞에 공백이 오거나
+  - link-content 의 뒤에 공백이 오거나
+  - link-content 의 양쪽에 공백이 오거나
+```js
+var keyword = 'link-content';
+var match = new RegExp('/(^|\s) + match + ($|\s)/')
+/(^|\s)link-content($|\s)/.test('link-content external') // true
+```
 
 
- 
+
 ```js
 // IE 9+ 에서만 지원되는 신 기술
     // function classes(name, context) {
@@ -214,16 +178,9 @@ for(var i = 0; i < element1.length; i++){
   }();
 ```
 
-
-## 노드 만들기
-
-https://placeimg.com/
-
-https://unsplash.it/
-
-
-## 포토 쇼케이스 만들기 실습
-
+## 이미지 링크 사이트
+- <https://placeimg.com/>
+- <https://unsplash.it/>
 
 
 ## 'this' 에 대한 조금 더 괜찮은 예제
@@ -334,7 +291,6 @@ console.log(o.phase, o.modulus); // logs -0.78 1.4142
 ```
 
 6. call, apply, bind 메서드로 this를 특정한 객체와 연결할 수 있다.
-- 
 ```js
 var add = function (x, y) {
       this.val = x + y;
