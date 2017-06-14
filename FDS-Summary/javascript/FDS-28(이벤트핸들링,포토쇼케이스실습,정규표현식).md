@@ -1,7 +1,9 @@
 FDS-28-이벤트핸들링,포토쇼케이스실습,정규표현식
 ========
 
-## 부모노드 찾기(숫자를 가지고 몇 칸 올라갈 수 있나?)
+
+## 더 좋은 Summary 이동 -> <https://github.com/owl423/FDS04_Summary/blob/master/README/0613.md>
+
 ## location.hash
 - `/` 에서 `#`(hash)로 바꿔줌
 - `#`(hash) 는 콘솔창에서 `location.hash`로 접근 가능하고, 재설정도 가능하다.
