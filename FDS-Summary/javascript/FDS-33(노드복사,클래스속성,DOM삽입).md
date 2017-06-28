@@ -1,9 +1,6 @@
 FDS-33-노드복사/클래스속성/DOM삽입
 ========
 
-https://github.com/yamoo9/FDS/tree/4th/LECTURE 
-여기 내용 예습
-
 ## cloneNode
 - `.cloneNode([deep])`
 - deep : (true || false) True면 이 노드 아래에 있는 전체 트리의 복제. False 인 경우, 이 노드 및 해당 특성에만 복제
@@ -346,19 +343,36 @@ console.log('target.dataset',target.cataset);
 - 참고: <http://www.w3im.com/ko/js/js_conventions.html>
 
 
-
 5. Focus Element 종류(테이블로 정리)
-| First Header  | Second Header | Third Header         |
-| :------------ | :-----------: | -------------------: |
-| First row     | Data          | Very long data entry |
-| Second row    | **Cell**      | *Cell*               |
-| Third row     | Cell that spans across two columns  ||
+- 참고: <https://goo.gl/xWM8U4>
+- href 속성을 가진 엘리먼트
+
+| Element       |
+| :------------ |
+| a             |
+| area          |
+| button        |
+| input         |
+| textarea      |
+| object        |
+| select        |
+
+
+  - a        
+  - area     
+  - button   
+  - input    
+  - textarea 
+  - object   
+  - select 
+
 [키보드 focus를 갖는 element 정리][section-mmd-tables-table1] 
 
 
 12-1. Element.insertAdjacentElement(position, element)
 - element: 요소노드 값을 입력한다.
 - insertAdjacentHTML 과 같은 포지션 값을 가진다.
+- IE 9+
 ```js
 beforeBtn.addEventListener('click', function() {
   var tempDiv = document.createElement('div');
@@ -376,8 +390,9 @@ afterBtn.addEventListener('click', function() {
 ```
 
 12-2. Element.insertAdjacentText(position, element)
-- element: Text 값을 입력한다 
+- element: Text 값을 입력한다.
 - insertAdjacentHTML 과 같은 포지션 값을 가진다.
+- IE 9+
 ```js
 beforeBtn.addEventListener('click', function() {
   para.insertAdjacentText('afterbegin',textInput.value);
@@ -406,12 +421,10 @@ afterBtn.addEventListener('click', function() {
 - KebabCAse : `kebab-case-naming` 소문자에 dash(-) 조합
   - html,css에서는 class명으로 케밥케이스를 많이 쓰는데, 자바스크립트에서 하이픈은 빼기(-)로 인식할 수 있어서
   - 객체의 key 값을 케밥케이스로 할때에는 따옴표로 감싸줘야 한다.
-  ```html
-  <div class="html-wrapper">
-    작성한 HTML 코드가 이 곳에 동적으로 처리됩니다. :-)
-  </div>
-  ```
   ```js
+  // <div class="html-wrapper">
+  //   작성한 HTML 코드가 이 곳에 동적으로 처리됩니다. :-)
+  // </div>
   // #user-html-code <textarea> 요소의 값(value) -> HTML 코드를
   // .html-wrapper 내부에 적용하여 화면을 업데이트 하시오.
   $.selector('div.html-wrapper').innerHTML = html_code;
