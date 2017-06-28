@@ -1,4 +1,4 @@
-DOM-01()
+DOM-노드정리
 ========
 
 ## DOM(Document Object Model)
