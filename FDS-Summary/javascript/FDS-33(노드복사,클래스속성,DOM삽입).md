@@ -9,7 +9,8 @@ FDS-33-노드복사/클래스속성/DOM삽입
 ## forEach
 - 참고: <https://msdn.microsoft.com/ko-kr/library/ff679980(v=vs.94).aspx>
 - `array1.forEach(callbackfn[, thisArg])`
-- 배열에 있는 각 요소에 대해 한 번씩 오름차순 인덱스 순서로 callbackfn 함수를 호출. 배열 개체 외에도 forEach 메서드를 사용하면 length 속성을 포함하는 개체와 숫자로 인덱싱된 속성 이름을 포함하는 모든 개체에서 사용 가능
+- 배열에 있는 각 요소에 대해 한 번씩 오름차순 인덱스 순서로 callbackfn 함수를 호출. 
+- 배열 개체 외에도 forEach 메서드를 사용하면 length 속성을 포함하는 개체와 숫자로 인덱싱된 속성 이름을 포함하는 모든 개체에서 사용 가능
 - callbackfn
   - `function callbackfn(value, index, array1)`
   - 최대 3개의 인수를 받아들이는 함수 forEach는 배열에 있는 각 요소마다 한 번씩 callbackfn 함수를 호출
@@ -33,16 +34,16 @@ FDS-33-노드복사/클래스속성/DOM삽입
 ```js
 // Define the object that contains the callback function.
 var obj = {
-    showResults: function(value, index) {
-        // Call calcSquare by using the this value.
-        var squared = this.calcSquare(value);
+  showResults: function(value, index) {
+    // Call calcSquare by using the this value.
+    var squared = this.calcSquare(value);
 
-        document.write("value: " + value);
-        document.write(" index: " + index);
-        document.write(" squared: " + squared);
-        document.write("<br />");
-    },
-    calcSquare: function(x) { return x * x }
+    document.write("value: " + value);
+    document.write(" index: " + index);
+    document.write(" squared: " + squared);
+    document.write("<br />");
+  },
+  calcSquare: function(x) { return x * x }
 };
 
 // Define an array.
@@ -267,9 +268,6 @@ return false;
   - position
   - before, after
   - begin, end
-  ```html
-  
-  ```
   ```js
   var target = $.selector('.insert-adjacent-html .target');
   target.insertAdjacentHTML('beforebegin', '<h2 class="beforebegin">beforebegin</h2>');
@@ -278,6 +276,10 @@ return false;
   target.insertAdjacentHTML('afterend', '<h2 class="afterend">afterend</h2>');
   ```
 - `.insertAdjacentElement()`
+  - Element.insertAdjacentElement(position, element)
+  - element: 요소노드 값을 입력한다.
+  - insertAdjacentHTML 과 같은 포지션 값을 가진다.
+  - IE 9+
   ```js
   target.insertAdjacentElement('beforebegin', $.createEl('h2','beforebegin'));
   target.insertAdjacentElement('afterbegin', $.createEl('strong','afterbegin'));
@@ -286,7 +288,9 @@ return false;
   ```
 - `.insertAdjacentText()`
   - Element.insertAdjacentText(position, element)
-  - Text 값을 입력한다 insertAdjacentHTML 과 같은 포지션 값을 가진다.
+  - element: Text 값을 입력한다.
+  - insertAdjacentHTML 과 같은 포지션 값을 가진다.
+  - IE 9+
   ```js
   target.insertAdjacentText('beforebegin', 'beforebegin');
   target.insertAdjacentText('afterbegin', 'afterbegin');
@@ -303,7 +307,6 @@ return false;
   });
   ```
 
-## onkeyup(키보드 이벤트)
 
 ## 실습
 - 참고: <http://emailregex.com/>
@@ -312,16 +315,18 @@ return false;
 - 참고: <https://www.w3schools.com/jsref/event_target.asp>
 - 참고: <http://krespo.net/88>
 
-
-## 데이터 접두사 속성 제어
-- `.dataset`
-```js
+## HTMLElement.dataset
+- 참고: <https://developer.mozilla.org/fr/docs/Web/API/HTMLElement/dataset>
+- 데이터 접두사 제어 메소드
+- data-  로 시작하는 값을 제어할수 있다.
+- DOMStringmap
+- 참고: <https://developer.mozilla.org/en-US/docs/Web/API/DOMStringMap> 
+```javascript
 target.setAttribute('data-tag-name',target.localName);
 target.setAttribute('data-node-type',target.nodeType);
 target.setAttribute('data-has-class',target.hasAttribute('class'));
 console.log('target.dataset',target.cataset);
 ```
-- 
 
 ## 네이밍관례 종류 (Naming convention)
 - TitleCase : `TitleCaseNaming` (UpperCamelCase,PascalCaseNaming) 첫 단어를 대문자로 시작하는 표기법
@@ -343,21 +348,9 @@ console.log('target.dataset',target.cataset);
 - 참고: <http://www.w3im.com/ko/js/js_conventions.html>
 
 
-5. Focus Element 종류(테이블로 정리)
+## Focus Element 종류
 - 참고: <https://goo.gl/xWM8U4>
 - href 속성을 가진 엘리먼트
-
-| Element       |
-| :------------ |
-| a             |
-| area          |
-| button        |
-| input         |
-| textarea      |
-| object        |
-| select        |
-
-
   - a        
   - area     
   - button   
@@ -365,68 +358,3 @@ console.log('target.dataset',target.cataset);
   - textarea 
   - object   
   - select 
-
-[키보드 focus를 갖는 element 정리][section-mmd-tables-table1] 
-
-
-12-1. Element.insertAdjacentElement(position, element)
-- element: 요소노드 값을 입력한다.
-- insertAdjacentHTML 과 같은 포지션 값을 가진다.
-- IE 9+
-```js
-beforeBtn.addEventListener('click', function() {
-  var tempDiv = document.createElement('div');
-  tempDiv.style.backgroundColor = randomColor();
-  activeElem.insertAdjacentElement('beforebegin',tempDiv);
-  setListener(tempDiv);
-});
-
-afterBtn.addEventListener('click', function() {
-  var tempDiv = document.createElement('div');
-  tempDiv.style.backgroundColor = randomColor();
-  activeElem.insertAdjacentElement('afterend',tempDiv);
-  setListener(tempDiv);
-});
-```
-
-12-2. Element.insertAdjacentText(position, element)
-- element: Text 값을 입력한다.
-- insertAdjacentHTML 과 같은 포지션 값을 가진다.
-- IE 9+
-```js
-beforeBtn.addEventListener('click', function() {
-  para.insertAdjacentText('afterbegin',textInput.value);
-});
-
-afterBtn.addEventListener('click', function() {
-  para.insertAdjacentText('beforeend',textInput.value);
-});
-```
-  
-13. HTMLElement.dataset
-- 참고: <https://developer.mozilla.org/fr/docs/Web/API/HTMLElement/dataset>
-- 데이터 접두사 제어 메소드
-- data-  로 시작하는 값을 제어할수 있다.
-- DOMStringmap
-- 참고: <https://developer.mozilla.org/en-US/docs/Web/API/DOMStringMap> 
-```javascript
-  target.setAttribute('data-tag-name', target.localName);
-  // data- 사용자 속성값 설정 하는 예시
-```
-
-14. 네이밍관례 종류 (Naming convention)
-- TitleCase : `TitleCaseNaming` (UpperCamelCase,PascalCaseNaming) 첫 단어를 대문자로 시작하는 표기법
-- CamelCase : `camelCaseNaming` (lowerCamelCase) 각 단어의 첫문자를 대문자로 표기하고 붙여쓰되, 맨처음 문자는 소문자로 표기
-- SnakeCase : `snake_case_naming` 단어를 밑줄문자(_)로 구분하는 표기법
-- KebabCAse : `kebab-case-naming` 소문자에 dash(-) 조합
-  - html,css에서는 class명으로 케밥케이스를 많이 쓰는데, 자바스크립트에서 하이픈은 빼기(-)로 인식할 수 있어서
-  - 객체의 key 값을 케밥케이스로 할때에는 따옴표로 감싸줘야 한다.
-  ```js
-  // <div class="html-wrapper">
-  //   작성한 HTML 코드가 이 곳에 동적으로 처리됩니다. :-)
-  // </div>
-  // #user-html-code <textarea> 요소의 값(value) -> HTML 코드를
-  // .html-wrapper 내부에 적용하여 화면을 업데이트 하시오.
-  $.selector('div.html-wrapper').innerHTML = html_code;
-  ```
-- 참고: <http://www.w3im.com/ko/js/js_conventions.html>
