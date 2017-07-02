@@ -1,4 +1,4 @@
-FDS-35-(Babel + ECMA script 2015 특강)
+FDS-35-Babel + ECMA script 2015 특강
 ========
 
 ## 이웅모님 (http://poiemaweb.com 운영자)
