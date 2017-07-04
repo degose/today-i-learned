@@ -3,7 +3,7 @@ FDS-36-OOP,Store라이브러리,AJAX
 
 
 ## 객체 지향 프로그래밍(OOP)
-
+- 참고: <https://developer.mozilla.org/ko/docs/Web/JavaScript/Introduction_to_Object-Oriented_JavaScript>
 
 ### Store 라이브러리
 - Vue.js에서 저장소 관리 객체
