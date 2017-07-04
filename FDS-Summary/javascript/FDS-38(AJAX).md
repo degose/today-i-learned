@@ -1,4 +1,4 @@
-FDS-37-AJAX,
+FDS-37-AJAX
 ========
 
 ## Ajax
