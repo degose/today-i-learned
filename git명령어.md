@@ -1,20 +1,20 @@
 # github 저장소 내려받기(git clone)
 ---
 - 해당 github페이지에서 오른쪽 clone 버튼에 url카피
-```
+```bash
  $ git clone (url)
 ```
 여기서! checkout 4th 브런치로 해줘야 해당파일들이 보인다.
 
 # github 저장소 바뀐 내용 내려받기(git pull)
 - FDS04_Summary 내려받기
-```
+```bash
 $cd FDS04_Summary(master)
 $git pull upstream master
 $git push origin master(내 깃허브로 옮기기)
 ```
 - 야무쌤 수업 내용 최신버전 동기화
-```
+```bash
 $ git remote -v
 $ git remote add upstream https://github.com/yamoo9/FDS.git
 $ git remote -v
@@ -23,7 +23,7 @@ $ git push origin 4th
 ```
 
 # 내 작업 github에 올리기(git push)
-```
+```bash
 $ git init (저장소 만들기)
 $ git (url)
 $ git push (저장소 이름) (master)
@@ -31,7 +31,7 @@ $ git remote v
 ```
 
 # 작업한 것을 올리고 싶다면
-```
+```bash
 $ git add *
 $ git commit -am "어떤것을 작업했다"
 $ git remote -v
@@ -40,22 +40,22 @@ $ git push (저장소 이름) (master)
 
 
 # && (명령어를 또 만들고 싶을 때)
-```
+```bash
 $mkdir images &&
  touch index.html css/modules/init.css
- ```
+```
 
 # node-sass
 - 설치 확인
-```
+```bash
 $ node -v
 v7.10.0
 ```
 - json파일 만들고 그 안에 {} 넣기
-```
+```bash
 $ echo '{}' > package.json
 ```
-```
+```bash
 $ node-sass sass/ -o css/ --source-map true
 $ node-sass --watch sass/ -o css/ --source-map true
 $ node-sass sass/ -o css/ --output-style expanded --source-map true
@@ -64,16 +64,16 @@ $ node-sass sass/ -o css/ --output-style expanded --source-map true
 아웃풋 스타일은 익스펜디드로 할거고, 소스맵은 개발자 도구에 오른쪽에 scss파일 어느 줄에 스타일이 있는지 알려주는 도구야
 
 ## node-sass 전역설치(global)
-```
+```bash
 $ npm ls node-sass -g
 ```
 
 ## node-sass 지역설치
-```
+```bash
 $ npm install --save-dev node-sass
 ```
 이렇게 하면 package.json 안에 아래처럼 들어감
-```
+```bash
 {
   "devDependencies": {
     "node-sass": "^4.5.3"
@@ -82,13 +82,13 @@ $ npm install --save-dev node-sass
 ```
 
 # 도움말
-```
+```bash
 $ node-sass --help
 ```
 
 # sass 스크립트 단축키
 package.json파일 안에 script단축키를 만들었다.
-```
+```bash
 {
   "scripts": {
     "sass" : "node-sass --output-style expanded css/modules/grid.scss > css/modules/grid.css",
@@ -99,7 +99,7 @@ package.json파일 안에 script단축키를 만들었다.
   }
 }
 ```
-```
+```bash
 $ npm run sass
 > @ sass /Users/gose/FDSme/LECTURE/DAY02/yuyu.com
 > node-sass --output-style expanded css/modules/grid.scss > css/modules/grid.css
@@ -123,7 +123,7 @@ npm init -y
 
 # github에서 작업한 html 바로 열기
 
-```
+```bash
 $ cd webtest(해당폴더)
 $ git init
 $ git remote -v
@@ -137,6 +137,15 @@ $ git push origin gh-pages
 
 ```
 주소창에 degose.github.io/webtest(저장소 이름 / 여러개 가능 경로만 잘 만들면)
+https://degose.github.io/FDS-Practice/layout-position/ 이런식으로 만들어야 함
+
+- master브랜치에서 작업 후 gh-pages merge시키기
+```bash
+$ git push origin master (master)
+$ git checkout gh-pages (gh-pages)
+$ git merge master 
+$ git push origin gh-pages
+```
 
 # 실수로 gh-pages로 작업했는데 master로 옮기고 싶을때
 당황하지 마르구.. gh-paghes로 작업된(수정된)파일을 다른데 복사해 두었다가 

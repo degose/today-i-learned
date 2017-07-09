@@ -29,12 +29,11 @@ localStorage.removeItem('temp')
 - 세션이 유지되는 동안 접근 가능, 세션이 만료되면 제거
 ```js
 sessionStorage
-
 ```
 3. JSON.parse() -> 문자를 객체화
 4. JSON.stringify() -> 객체를 문자화
 
-## this.classList.contains('is-save'
+## this.classList.contains
 
 
 
