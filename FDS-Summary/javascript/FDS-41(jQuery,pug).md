@@ -1,7 +1,6 @@
 FDS-40-jQuery,pug
 ========
 
-
 ## package.json 파일 설명
 - github 해당 폴더를 당겨온 뒤 package.json 파일이 있는 위치에서 npm 설치를 하면
 - package.json 파일 내에서 설정한 것들을 이용하여  node_modules폴더가 설치된다.
@@ -17,15 +16,32 @@ $ npm run dev
 ## ES6 복습
 - es6를 es5로 컴파일해주는데, 지역변수를 써봤자 es5에는 전역변수가 되기때문에 아직까지는 iife 문법을 써준다.
 ### 화살표 함수
+- 참고: <http://poiemaweb.com/es6-arrow-function>
+- 익명함수로만 사용할 수 있다. 그래서 화살표 함수를 호출하기 위해서는 함수 표현식을 사용한다.
+- 일반 함수에서의 this는 바인딩되는 객체를 가리키는데 콜백함수에서 this는 window를 가리킨다.
+- 화살표 함수는 자신을 포함하는 외부 scope에서 this를 계승 받는다. 자신만의 this를 생성하지 않고 자신을 포함하고 있는 컨텍스트로 부터 this를 계승 받는다. 이를 Lexical this라 한다.
 ```js
-
+$(document).on('click', e => {
+  console.log(e.target);        // Event Object 의 target 속성 값은?
+  console.log(e.currentTarget); // Event Object 의 currentTarget 속성 값은?
+  // 중요!!!!!
+  // 함수 값(리터럴)에서는 this가 이벤트의 주인을 가리키지만,
+  // 화살표 함수 내 this는 상위 컨텍스트를 가리킨다.
+  console.log(this);            // Arrow Function 내부의 this는?
+});
 ```
 ### 템플릿 대입문(template substitution)
 - 참고: <http://poiemaweb.com/es6-template-literals>
 - `${expression}`
+- 템플릿 대입문에는 문자열뿐만 아니라 JavaScript 표현식을 사용할 수 있다.
 ```js
-${name}
+console.log(`My name is ${first} ${last}.`);
 ```
+### arguments
+- 함수 호출 시 전달된 인수(argument)들의 정보를 담고 있는 순회가능한(iterable) 유사 배열 객체(array-like object)이다. 함수 객체의 arguments 프로퍼티는 arguments 객체를 값으로 가지며 함수 내부에서 지역변수처럼 사용된다.
+### rest 파라미터
+- `(...args)`
+- 가변인자를 함수 내부에 배열로 전달할 수 있다. arguments 프로퍼티가 없는 Arrow function에서 가변 인자 함수를 구현하는 경우, rest 파라미터를 사용하여야 한다.
 
 ## 템플릿 엔진
 - 템플릿을 읽어 엔진의 문법과 설정에 따라서 파일을 HTML 형식으로 변환시키는 모듈
@@ -199,6 +215,13 @@ $.ajax({
 ```
 
 ## DOM Node 전달
+### .on()
+- `.on( events [, selector ] [, data ], handler )`
+- 이벤트 핸들러 함수를 선택한 요소에 연결
+- jQuery 반환
+### .scrollTop()
+- 일치하는 요소 집합의 첫 번째 요소에 대한 스크롤 막대의 현재 세로 위치를 가져 오거나 일치하는 요소마다 스크롤 막대의 세로 위치를 설정
+- number 반환
 ```js
 ;(function(global, $){
   'use strict';
@@ -237,6 +260,30 @@ $.ajax({
 ## 팩토리 함수
 - 참고: <https://goo.gl/E727ie>
 - 함수가 객체를 반환하면 -> 팩토리 함수
+
+### [배열] .each()
+- $().each()는 네이티브 forEach() 와 달리 index, item 순.
+- `.each( function )`
+- 일치하는 각 요소에 대해 함수를 실행하여 jQuery 객체를 반복
+- function(index, element)
+- `this` refers to the element.
+- jQuery 반환
+```js
+$( "li" ).each(function( index ) {
+  console.log( index + ": " + $( this ).text() );
+});
+```
+### [배열] .attr() 메서드   
+- 일치하는 요소 집합의 첫 번째 요소에 대한 특성 값을 가져 오거나 일치하는 모든 요소에 대해 하나 이상의 특성을 설정
+- `.attr( attributeName )` -> string 반환
+- `.attr( attributeName, value )` -> jQuery 반환
+### [배열] .data() 메서드
+- 일치하는 요소와 관련된 임의의 데이터를 저장하거나 일치하는 요소 집합의 첫 번째 요소에 대해 명명 된 데이터 저장소에 값을 반환
+- `.data( key, value )`
+- jQuery 반환
+### jQuery 객체
+- jQuery 팩토리 함수에 jQuery 객체를 전달할 수도 있다.
+- $( $body )
 ```js
 ;(function(global, $){
   'use strict';
@@ -292,6 +339,7 @@ $.ajax({
 
 
 ## iife 다른 방법
+- es6니까 'use strict' 안해도 될것 같지만, 결국 babel로 es5로 바꿔주기 때문에 꼭 써주자.
 ### 화살표 함수
 ```js
 ((global, $) => {
@@ -300,6 +348,7 @@ $.ajax({
 })(window, window.jQuery);
 ```
 ### jQuery 
+- jQuery가 인자 $로 들어간다.
 ```js
 jQuery(function($){
   // code
@@ -314,6 +363,7 @@ jQuery(document).ready(function($){
 });
 ```
 ### noConflict 메서드 이용
+- 옛날 방법이고 쓰지말자
 ```js
 jQuery.noConflict()(function($){
   // code
@@ -338,6 +388,7 @@ let $body = $('body');
 - undefined 반환
 - hold: boolean(true || false)
 - 비동기 통신할때 쓴다.
+- script를 head에 써주면, body를 불러오기 전에 html 문서가 읽어버린다.(왜냐면 html은 인터프린터 언어니까.(pug는 컴파일러 언어)) 그래서 holdReady로 실행을 시키지 않다가, 통신을 주고 받을 때 그것이 성공하면 놓아줌으로써 실행시키게 해준다.
 ```js
 ((global, $) => {
   'use strict';
@@ -414,7 +465,6 @@ $('body').children().addClass('body-children');
   })
   .find('*').addClass(index => 'child-' + index);
 
-
 })(window, window.jQuery);
 ```
 ### .removeClass()
@@ -464,6 +514,7 @@ html(lang="en")
     link(rel="stylesheet", href="/node_modules/bulma/css/bulma.css")
     link(rel="stylesheet", href="./css/main.css")
     script(src="/node_modules/jquery/dist/jquery.min.js")
+    //- script. .을 찍어주는 이유? => 문법상 그러하다.
     script.
 
   body
@@ -475,6 +526,7 @@ html(lang="en")
           p.subtitle.is-4 write less do more.
 
           //- 데이터 정의
+          //- '-'를 적어준 이유? => 한 줄로 적어줘야 하기 때문
           -
             var accordion_data = {
               'general': {
