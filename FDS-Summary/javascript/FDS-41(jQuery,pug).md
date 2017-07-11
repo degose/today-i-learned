@@ -20,6 +20,12 @@ $ npm run dev
 ```js
 
 ```
+### 템플릿 대입문(template substitution)
+- 참고: <http://poiemaweb.com/es6-template-literals>
+- `${expression}`
+```js
+${name}
+```
 
 ## 템플릿 엔진
 - 템플릿을 읽어 엔진의 문법과 설정에 따라서 파일을 HTML 형식으로 변환시키는 모듈
@@ -70,9 +76,9 @@ html(lang="en")
 - 참고: <http://ejs.co/>
 - 참고: <https://velopert.com/379>
 - node.js의 express 프레임 워크
+- `<% 자바스크립트 코드 %>`
+- `<% 출력 할 자바스크립트 객체 %>`
 ```html
-<!--<% 자바스크립트 코드 %>-->
-<!--<% 출력 할 자바스크립트 객체 %>-->
 <html>
   <head>
   <!-- 라우터에서 title을 받아와서 출력 -->
@@ -114,7 +120,7 @@ html(lang="en")
 - 영화와 게임처럼 용량이 큰 콘텐츠를 효율적으로 이용자에게 배달하는 통신망 체계. 제한적인 통신망 자원으로 더 많은 콘텐츠를 안정적으로 전송하는 게 관건. 이를 위해 컴퓨팅 서버를 여러 개 마련해 통신량이 한곳에 몰리지 않게 한다.
 
 ### jQuery를 사용하는 방식 로컬 vs CDN
-- 직접 받아서 로컬로 쓰는 방식
+- 직접 받아서 로컬로 쓰는 local방식
   ```html
   <script src="/node_modules/jquery/dist/jquery.min.js"></script>
   ```
@@ -125,8 +131,16 @@ html(lang="en")
   <script src="//unpkg.com/jquery"></script>
   ```
 
-
 ## Ajax GET
+- 참고: <http://api.jquery.com/jQuery.get/>
+- `jQuery.get( url [, data ] [, success ] [, dataType ] )`
+  - url: string
+  - data: string
+- `then()`
+  - 참고: <http://poiemaweb.com/es6-promise>
+  - promise 를 반환
+  - `deferred.then( doneFilter [, failFilter ])`
+  - 두 개의 콜백 함수를 인자로 전달 받는다. 첫번째 함수는 성공(fulfilled) 시 호출되는 함수이고 두번째 함수는 실패(rejected) 시 호출된다.
 ```js
 // JSON:
 // https://api.myjson.com/bins/f0etn
@@ -143,13 +157,25 @@ html(lang="en")
 
 })(window, window.jQuery);
 ```
+- `jQuery.get( [settings ] )`
+```js
+$.ajax({
+  url: url,
+  data: data,
+  success: success,
+  dataType: dataType
+});
+```
 
 ## jQuery 버전 출력
-- v 3.2.1
+- `$().jquery`
+- `$.fn.jquery`
+- `$.prototype.jquery`
+- `jQuery.prototype.jquery`
 ```js
 ;(function(global, $){
   'use strict';
-
+  // v 3.2.1
   console.log('jQuery 버전? $().jquery = ', $().jquery);
   console.log('jQuery 버전? $.fn.jquery = ', $.fn.jquery);
   console.log('jQuery 버전? $.prototype.jquery = ', $.prototype.jquery);
@@ -158,27 +184,8 @@ html(lang="en")
 })(window, window.jQuery);
 ```
 
-## CSS 조작
-```js
-;(function(global, $){
-  'use strict';
-
-  // 메서드 체이닝이 가능한 이유는
-  // jQuery 객체가 메서드마다 반환되기 때문
-  // > 모든 메서드가 가능한 것은 아님 (API 문서 확인)
-
-  // 팩토리 함수
-  // CSS 선택자를 전달
-  $('h1')
-    // CSS 속성을 제어하는 jQuery 객체(인스턴스)의 메서드를 사용
-    .css('color', 'tan')
-    .addClass('is-3')
-    .removeClass('is-1');
-
-})(window, window.jQuery);
-```
-
 ## 인스턴스 메서드 검증
+- `!!jQuery`
 ```js
 ;(function(global, $){
   'use strict';
@@ -228,6 +235,8 @@ html(lang="en")
 ```
 
 ## 팩토리 함수
+- 참고: <https://goo.gl/E727ie>
+- 함수가 객체를 반환하면 -> 팩토리 함수
 ```js
 ;(function(global, $){
   'use strict';
@@ -299,7 +308,6 @@ jQuery(function($){
 ### ready() 메서드 이용
 - ready 문처럼 동작
 - 참고: <http://api.jquery.com/ready/>
-- 문서가 준비되면 (document ready) 콜백함수 코드 실행
 ```js
 jQuery(document).ready(function($){
   // code
@@ -313,9 +321,46 @@ jQuery.noConflict()(function($){
 ```
 
 
+
 ## jQuery Core
-### jQuery.noConflict()
-- 포기하는거
+- 참고: <http://api.jquery.com/category/core/>
+### jQuery()
+- 전달 된 인수를 기반으로 DOM에서 찾거나 HTML 문자열을 전달하여 일치하는 요소의 컬렉션을 반환
+- `jQuery (selector [, context])`
+- 변수 선언 규칙 `$이름` 으로 변수 이름을 짓는다.
+```js
+let $body = $('body');
+```
+
+### holdReady()
+- ready이벤트를 보류시키거나 해제한다.
+- `jQuery.holdReady( hold )`
+- undefined 반환
+- hold: boolean(true || false)
+- 비동기 통신할때 쓴다.
+```js
+((global, $) => {
+  'use strict';
+
+  // jQuery Ready()를 붙잡자(hold: true)
+  $.holdReady(true);
+
+  // Ajax GET
+  $.get(api_address).then(data => {
+    console.log(data);
+
+    // jQuery Ready()를 놓아주다(hold: false)
+    $.holdReady(false); // Excute Ready Function
+  });
+
+})(window, window.jQuery);
+```
+
+### noConflict()
+- 변수 제어를 포기
+- `jQuery.noConflict( [removeAll ] )`
+- 객체를 반환
+- removaAll : boolean
 ```js
 jQuery === $ //true
 jQuery.noConflict(true); // removeAll -> window에 있는 window.jQuery까지 포기하겠다.
@@ -325,77 +370,90 @@ window.jQuery // unfined
 $$ // jQuery
 ```
 
-### jQuery.holdReady()
-- 인자로 true -> 함수가 끝난 후 false
-- returns: undefined
-- 비동기 통신할 때 쓴다.
+### ready
+- 문서가 준비되면 (document ready) 콜백함수 코드 실행
+- event .ready(handler)와 다르다.
+- `jQuery.ready`
+- `jQuery.when`: 0 개 이상의 Thenable 객체 (대개 비동기 이벤트를 나타내는 ready 객체)를 기반으로 콜백 함수를 실행하는 방법을 제공
 ```js
-((global, $) => {
+$.when( $.ready ).then(function() {
+  // Document is ready.
+});
+```
+
+## jQuery CSS
+### .addClass()
+- `.addClass( className )`
+- `.addClass( function )`
+  - function: Function( Integer index, String currentClassName ) => String
+  - `this` refers to the current element in the set.
+- jQuery를 반환
+- `.attr()`는 기존의 클래스를 지우고 새로운 클래스로 대체
+```js
+$('body').children().attr('class', 'body-children');
+$('body').children().addClass('body-children');
+```
+- `.find(seletor)`, `.find(element)` -> jQuery반환, 
+```js
+;(function(global, $){
   'use strict';
+  
+  // addClass() + function
+  // (index, currentClassName) => String
+  $('.app').addClass((index, name) => {
+    // console.log(index, name); // 0 "app container"
+    let names = name.split(' ');
+    console.log(names);
+    let convert_names = names.map(name => {
+      return `-${name}-*`;
+    });
+    console.log(convert_names); // '[-app-]', '-container-'
+    convert_names = convert_names.join(' ');
+    console.log(convert_names); // '*-app-* *-container-*'
+    return convert_names;
+  })
+  .find('*').addClass(index => 'child-' + index);
 
-  let api_id = 'f0etn';
-  let api_address = `https://api.myjson.com/bins/${api_id}`;
-
-  // jQuery Ready()를 붙잡자(hold)
-  console.log('jQuery Ready()를 붙잡자(hold: true)');
-  $.holdReady(true);
-
-  // Ajax GET
-  $.get(api_address).then(data => {
-    console.groupCollapsed('jQuery Ajax 데이터 로드');
-
-    console.log(data);
-
-    console.groupEnd('jQuery Ajax 데이터 로드');
-    console.log('jQuery Ready()를 놓아주다(hold: false)');
-    $.holdReady(false); // Excute Ready Function
-  });
 
 })(window, window.jQuery);
 ```
+### .removeClass()
+- jQuery 반환
+- `.removeClass( [className ] )`
+- `.removeClass( function ))`
 
-## CSS
-### .addClass()
-        //- $('body').children().attr('class', 'body-children'); // 기존의 클래스를 새로운 클래스로 대체
-        $('body').children().addClass('body-children');
-- 인자로 className,function
-- return: jQuery
-- .addClass(function)
-- .find()
-- $("p").last()
-- $("p:last") -> 수집된 p중에 마지막 애
+### .css()
+- 참고: <http://api.jquery.com/css/#css-propertyName-function>
+- `.css( propertyName )` -> String
+- `.css( propertyNames )` -> Array
+- `.css( propertyName, value )`
+- `.css( propertyName, function )`
+- `.css( properties )`
+```js
+$('h1').css('color', 'tan');
+```
+
+### .hasClass()
+- boolean 반환. -> 메서드 체이닝에 쓰지 않고 조건문에 쓴다.
+- `.hasClass( className )`
+- `$("p").last()` == `$("p:last")` -> 수집된 p중에 마지막 애
+```js
+$( "#result1" ).append( $( "p:first" ).hasClass( "selected" ).toString() );
+$( "#result2" ).append( $( "p:last" ).hasClass( "selected" ).toString() );
+```
+- `.append( content [, content ] )`, `.append( function )`
+  - 매개 변수로 지정된 내용을 각 요소 끝에 삽입
   ```js
-  ;(function(global, $){
-    'use strict';
-    
-    // addClass() + function
-    // (index, currentClassName) => String
-    $('.app').addClass((index, name) => {
-      // console.log(index, name); // 0 "app container"
-      let names = name.split(' ');
-      console.log(names);
-      let convert_names = names.map(name => {
-        return `-${name}-*`;
-      });
-      console.log(convert_names); // '[-app-]', '-container-'
-      convert_names = convert_names.join(' ');
-      console.log(convert_names); // '*-app-* *-container-*'
-      return convert_names;
-    })
-    .find('*').addClass(index => 'child-' + index);
-
-
-  })(window, window.jQuery);
+  $( ".inner" ).append( "<p>Test</p>" );
   ```
 
-## hasClass()
-- boolean 반환. -> 메서드 체이닝에 쓰지 않고 조건문에 쓴다.
-## .append()
+
+
 
 ## 실습 (Accordion UI)
 - 참고: <https://jqueryui.com/accordion/>
 - 모바일 환경에서 주로 사용
-```html
+```pug
 <!DOCTYPE html>
 html(lang="en")
   head
