@@ -1,4 +1,4 @@
-FDS-40-jQuery,pug
+FDS-41-jQuery,pug
 ========
 
 ## package.json 파일 설명
@@ -278,7 +278,7 @@ $( "li" ).each(function( index ) {
 - `.attr( attributeName )` -> string 반환
 - `.attr( attributeName, value )` -> jQuery 반환
 ### [배열] .data() 메서드
-- 일치하는 요소와 관련된 임의의 데이터를 저장하거나 일치하는 요소 집합의 첫 번째 요소에 대해 명명 된 데이터 저장소에 값을 반환
+- 일치하는 요소와 관련된 임의의 데이터를 저장하거나 일치하는 요소 집합의 첫 번째 요소에 대해 명명 된 데이터 저장소에 값을 저장
 - `.data( key, value )`
 - jQuery 반환
 ### jQuery 객체

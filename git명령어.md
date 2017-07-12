@@ -151,3 +151,21 @@ $ git push origin gh-pages
 당황하지 마르구.. gh-paghes로 작업된(수정된)파일을 다른데 복사해 두었다가 
 git checkout master로 바꾼뒤
 master 폴더에 복사해뒀던 파일들을 다시 넣어서 push 하면 된단다....
+
+
+# 팀프로젝트 github사용
+
+## collaborator
+- 사용할 유저들 메일을 등록 (소수의 프로젝트일 때)
+- 브랜치 관리가 중요
+- 개발용 브랜치(파랑색) 실무에서는 기능별로 브랜치를 딴다.
+- 자기이름 브랜치를 따로 따서 작업하는 것도 방법
+- 자기 브랜치로 푸시 -> 데브브랜치로 머지
+- 같은 파일을 수정을 한 것은 오류남
+```bash
+$ git checkout dev
+$ git checkout -b gose 
+$ git push origin gose
+$ git pull upstream dev
+$ 
+```
