@@ -9,9 +9,9 @@
 # github 저장소 바뀐 내용 내려받기(git pull)
 - FDS04_Summary 내려받기
 ```bash
-$cd FDS04_Summary(master)
-$git pull upstream master
-$git push origin master(내 깃허브로 옮기기)
+$ cd FDS04_Summary(master)
+$ git pull upstream master
+$ git push origin master(내 깃허브로 옮기기)
 ```
 - 야무쌤 수업 내용 최신버전 동기화
 ```bash
@@ -155,7 +155,7 @@ master 폴더에 복사해뒀던 파일들을 다시 넣어서 push 하면 된�
 
 # 팀프로젝트 github사용
 
-## collaborator
+## collabo
 - 사용할 유저들 메일을 등록 (소수의 프로젝트일 때)
 - 브랜치 관리가 중요
 - 개발용 브랜치(파랑색) 실무에서는 기능별로 브랜치를 딴다.
@@ -169,3 +169,10 @@ $ git push origin gose
 $ git pull upstream dev
 $ 
 ```
+- 자기 브랜치로 자기 파일 업데이트 잘 하면 되는데, VUE같은 경우에는 파일을 따로 관리하기 때문에 괜찮지만 만약에 여러명이 같은 파일을 수정했을 경우 오류가 발생
+```bash
+$ git checkout master
+$ git pull origin master
+$ git pull origin gose
+```
+- 파일 어떻게 다른지 확인, 어떤 것을 살릴지 정한 후 나머지 오류 메세지, 버릴 코드 삭제 후 푸시
