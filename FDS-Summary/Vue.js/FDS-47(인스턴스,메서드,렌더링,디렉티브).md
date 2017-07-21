@@ -61,3 +61,14 @@ const fds {};
 - 디렉티브
 - v-text, v-html, v-once, v-cloak
 
+
+
+
+## 트리거
+## 프록시
+## 라이프사이클 훅 
+## $mount
+## if-for 시 index 
+## v-cloak은 언제쓸까? 
+## v-once는 언제쓸까?
+## $set(obj, key, value)
