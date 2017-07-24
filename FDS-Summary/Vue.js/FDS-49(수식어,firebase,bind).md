@@ -55,22 +55,20 @@ Vue.config.keyCodes = {
 button.delete(type="button" aria-label="제거" @keyup.shift.f2="excludeMember(i,n)")
 ```
 
-
-
-
-## argument
-
 ## 왜 겸손한 자바스크립트를 안하나?
 - 모든 뷰 핸들러 함수와 표현식 샌드박스 패턴으로 엄격히 관리하기 때문에 유지보수가 어렵지 않다.
 - 직접 수동으로 요소를 찾아서 하지 않아도 직관적으로 줄 수 있다.
 - viewModel이 파기되면 모든 이벤트 리스너가 자동으로 제거, 이벤트 제거에 대한 걱정이 필요 없어진다.
 
 
+## prop
+- 속성 대신 DOM속성으로 바인딩 (property 대신 attribute로 바인딩)
+
+
+
 
 ## firebase
 - 참고: <https://firebase.google.com/>
 
-## prop
-- 속성 대신 DOM속성으로 바인딩 (property 대신 attribute로 바인딩)
 
-## attr
+## data를 불러오고 접근할 때
