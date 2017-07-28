@@ -1,7 +1,7 @@
-FDS-52-
+FDS-52-form
 ========
 
-## 
+
 ### Vue 폼 유효성 검사
 - input , textarea, select ... => v-model
 - Modifiers: .lazy, .number, .trim
