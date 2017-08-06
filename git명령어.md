@@ -176,3 +176,79 @@ $ git pull origin master
 $ git pull origin gose
 ```
 - 파일 어떻게 다른지 확인, 어떤 것을 살릴지 정한 후 나머지 오류 메세지, 버릴 코드 삭제 후 푸시
+
+
+## .git 삭제
+```bash
+$ rm -rf .git
+```
+
+## 저장소 만든 뒤 클론
+```bash
+$ git clone URL
+```
+
+## 브랜치 만들기
+```bash
+$ git branch user-signup
+```
+## 삭제하기
+```bash
+$ git branch -rd origin/master
+```
+
+## 파일 만들기
+```bash
+$ touch 파일이름
+```
+## 파일 복사?
+```bash
+$ git fetch??
+```
+
+## pull requests
+- 
+```bash
+$
+```
+
+## 가져오기
+```bash
+$ git pull origin
+```
+
+## vi text 작성
+- insert에서 나가기
+- esc 
+- :w 
+- :wq
+```bash
+$ vi text.txt
+$ 
+```
+
+## 로컬에서 충돌된 것 해결하기
+- 
+```bash
+$ git pull origin master
+```
+
+## commit 수정하기
+- 하지만 절대 push한 commit을 삭제하거나 수정하면 안된다.
+- 그럴 경우에는 그냥 새로운 커밋 내용을 push하는 것이 낫다
+- push하기 전에 로컬에서 수정하자
+```bash
+$ git rebase -i
+$ 
+```
+
+## origin or upstream
+- 
+```bash
+$ git remote add upstream [원본 저장소의 주소]
+$ git pull upstream master
+```
+- 
+```bash
+$ git pull upstream master
+```
