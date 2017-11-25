@@ -1,4 +1,4 @@
-JavaScriptCookbook - 1 클라이언트-서버 통신 및 데이터
+클라이언트-서버 통신 및 데이터
 ========
 
 ## RESTful API
