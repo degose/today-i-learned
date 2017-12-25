@@ -12,4 +12,3 @@
 - meta, name, description
 - title에 독창적이고 명확한 title을 기재
 - url 경로도 확실하게 알 수 있게
-- 
